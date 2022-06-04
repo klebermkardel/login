@@ -1,4 +1,5 @@
 <?php
+$erro = Array();
 
     include("classe/conexao.php");
 
@@ -30,15 +31,17 @@
         if(strlen($_SESSION['senha']) < 8 || strlen($_SESSION['senha']) > 16)
             $erro[] = "Preencha a senha corretamente";
 
-        if(strcmp($_SESSION['senha'], $_SESSION['resenha']) != 0) //Verifica se senha e repita a senha estão iguais
+        if(strcmp($_SESSION['senha'], $_SESSION['rsenha']) != 0) //Verifica se senha e repita a senha estão iguais
             $erro[] = "As senhas não conferem";
 
         // 3- Inserção dos dados no banco e redireciona para tela de visualização de Usuários
         if(count($erro) == 0){
 
+            $senha = md5(md5($_SESSION['senha']));
+
             $sql_code = "INSERT INTO usuarios (
                 nome, 
-                sobrenone, 
+                sobrenome, 
                 email, 
                 senha, 
                 sexo, 
@@ -48,10 +51,10 @@
                 '$_SESSION[nome]',
                 '$_SESSION[sobrenome]',
                 '$_SESSION[email]',
-                '$_SESSION[senha]',
+                '$senha',
                 '$_SESSION[sexo]',
                 '$_SESSION[niveldeacesso]',
-                '$_SESSION[dtCadastro]'
+                NOW()
                 )";
 
             $confirma = $mysqli->query($sql_code) or die($mysqli->error);
@@ -90,30 +93,30 @@
 <form action="index.php?p=cadastrar" method="POST">
 
     <label for="nome">Nome</label>
-    <input name="nome" value="" required type="text">
+    <input name="nome" value="<?php echo $_SESSION['nome']; ?> " required type="text">
     <p class="espaco"></p>
 
     <label for="sobrenome">Sobrenome</label>
-    <input name="sobrenome" value="" required type="text">
+    <input name="sobrenome" value="<?php echo $_SESSION['sobrenome']; ?> " required type="text">
     <p class="espaco"></p>
 
     <label for="email">E-mail</label>
-    <input name="email" value="" required type="email">
+    <input name="email" value="<?php echo $_SESSION['email']; ?> " required type="email">
     <p class="espaco"></p>
 
     <label for="sexo">Sexo</label>
     <select name="sexo">
         <option value="">Selecione</option>
-        <option value="1">Masculino</option>
-        <option value="2">Feminino</option>
+        <option value="1" <?php if($_SESSION['sexo'] == 1) echo "selected"; ?>>Masculino</option>
+        <option value="2" <?php if($_SESSION['sexo'] == 2) echo "selected"; ?>>Feminino</option>
     </select>
     <p class="espaco"></p>
 
     <label for="niveldeacesso">Nível de Acesso</label>
     <select name="niveldeacesso">
         <option value="">Selecione</option>
-        <option value="1">Básico</option>
-        <option value="2">Admin</option>
+        <option value="1" <?php if($_SESSION['niveldeacesso'] == 1) echo "selected"; ?>>Básico</option>
+        <option value="2" <?php if($_SESSION['niveldeacesso'] == 2) echo "selected"; ?>>Admin</option>
     </select>
     <p class="espaco"></p>
 
