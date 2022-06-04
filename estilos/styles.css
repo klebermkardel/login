@@ -19,3 +19,18 @@ body {
     border: 1px solid #e3e3e3;
     border-radius: 5px;
 }
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input {
+    font-size: 16px;
+    padding: 5px;
+}
+
+.espaco {
+    height: 15px;
+    display: block;
+}
