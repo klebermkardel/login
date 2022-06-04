@@ -34,3 +34,7 @@ input {
     height: 15px;
     display: block;
 }
+
+.titulo {
+    font-weight: bold;
+}
