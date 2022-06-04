@@ -25,7 +25,7 @@
                     session_start(); // inicia a sessão estando tudo ok
                 }
 
-                $_SESSION['id'] = $usuario['id'];
+                $_SESSION['codigo'] = $usuario['codigo'];
                 $_SESSION['nome'] = $usuario['nome'];
 
                 header("Location: painel.php"); //Direciona para página logada
