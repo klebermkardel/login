@@ -88,6 +88,9 @@ $erro = Array();
     
     echo "</div>";
 }
+
+if(!isset($_SESSION)) 
+            session_start();
 ?>
 <a href="index.php?p=inicial">< Voltar</a>
 <form action="index.php?p=cadastrar" method="POST">
