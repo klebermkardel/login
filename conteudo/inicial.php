@@ -1,3 +1,7 @@
+<?php
+    include("classe/conexao.php");
+?>
+
 <h1>Usuários</h1>
 <a href="index.php?p=cadastrar">Cadastrar novo usuário</a>
 <p class="espaco"></p>
