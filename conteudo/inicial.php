@@ -6,6 +6,12 @@
     $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
     $linha = $sql_query->fetch_assoc();
 
+    $sexo[1] = "Masculino";
+    $sexo[2] = "Feminino";
+
+    $niveldeacesso[1] = "Admin";
+    $niveldeacesso[2] = "Básico";
+
 ?>
 
 <h1>Usuários</h1>
@@ -27,10 +33,15 @@
     <tr>
         <td><?php echo $linha['nome']; ?></td>
         <td><?php echo $linha['sobrenome']; ?></td>
-        <td><?php echo $linha['sexo']; ?></td>
+        <td><?php echo $sexo[$linha['sexo']]; ?></td>
         <td><?php echo $linha['email']; ?></td>
-        <td><?php echo $linha['niveldeacesso']; ?></td>
-        <td><?php echo $linha['dtCadastro']; ?></td>
+        <td><?php echo $niveldeacesso[$linha['niveldeacesso']]; ?></td>
+        <td><?php 
+        $d = explode(" ", $linha['dtCadastro']);
+        $data = explode("-", $d[0]);
+        echo "$data[2]/$data[1]/$data[0] às $d[1]"; 
+        
+        ?></td>
         <td>
             <a href="index.php?p=editar&usuario=<?php echo $linha['codigo']; ?>">Editar</a>
             <a href="index.php?p=deletar&usuario=<?php echo $linha['codigo']; ?>">Deletar</a>
