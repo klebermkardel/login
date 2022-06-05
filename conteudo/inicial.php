@@ -43,7 +43,7 @@
         
         ?></td>
         <td>
-            <a href="index.php?p=editar&usuario=<?php echo $linha['codigo']; ?>">Editar</a>
+            <a href="index.php?p=editar&usuario=<?php echo $linha['codigo']; ?>">Editar</a> |
             <a href="index.php?p=deletar&usuario=<?php echo $linha['codigo']; ?>">Deletar</a>
         </td>
     </tr>
